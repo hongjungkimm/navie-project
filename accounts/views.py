@@ -119,11 +119,9 @@ def profile(request, user_username):
 def change_personal_info(request, user_pk):
     user = get_object_or_404(get_user_model(), pk=user_pk)
     if request.method == 'POST':
-        user_change_form = UserInfoChangeForm(request.POST, instance=user)
+        user_change_form = UserInfoChangeForm(request.POST, request.FILES, instance=user)
         if user_change_form.is_valid():
-            change_user = user_change_form.save(commit=False)
-            change_user.username = user.username
-            change_user.save()
+            user_change_form.save()
             return redirect('accounts:profile', user.username)
     else:
         user_change_form = UserInfoChangeForm(instance=user)
@@ -149,7 +147,6 @@ def change_password(request):
         'change_password_form': change_password_form,
     }
     return render(request, 'accounts/change_password.html', context)
-
 
 
 @require_POST
