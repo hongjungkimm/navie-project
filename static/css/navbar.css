@@ -1,0 +1,114 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0D0C0C;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #11f3a2;
+  padding: 8px 12px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.navbar_home a {
+  color: #11f3a2;
+  font-size: 24px;
+  margin-left: 14px;
+}
+
+/* hover용 */
+/* .navbar_home a:hover,
+.navbar_lifemovie a:hover {
+  border-radius: 4px;
+  transition;
+} */
+
+/* 검색창 */
+.navbar_search {
+  border-color: white;
+  border: 1px solid white;
+  border-radius: 6px;
+  width: 240px;
+
+  background-color: #0D0C0C;
+  color: white;
+  text-align: center;
+  
+}
+ 
+/* 돋보기 버튼 */
+.navbar_searchbutton {
+  color: white;
+  background-color: #0D0C0C;
+  border: none;
+}
+
+/* 인생영화 */
+.navbar_lifemovie a {
+  color: #11f3a2;
+  font-size: 24px;
+}
+
+
+/* 로그인 */
+.navbar_login a {
+  color: #11f3a2;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+/* 프로필 밑 메뉴 */
+
+.navbar_dropdown {
+  margin-right: 20px;
+}
+
+/* 프로필 이미지 */
+.navbar_profile_image {
+  display:flex;
+  border-radius: 25px;
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.navbar_dropdown_content {
+  display: none;
+}
+
+.navbar_dropdown_content.active {
+  display: inline-block;
+  position: absolute;
+  flex-direction: column;
+  text-align: center;
+  min-width: 50px;
+  right: 15px;
+  border: 1px solid #11f3a2;
+  border-radius: 5px;
+  background-color: transparent;
+  list-style:none;
+}
+
+.navbar_dropdown_content:hover {
+  background-color: tomato;
+}
+
+.navbar_dropdown_content button,
+.navbar_dropdown_content a {
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #11f3a2;
+  background-color: transparent;
+  left: 50%;
+  top: 50%;
+  border: none;
+} 
