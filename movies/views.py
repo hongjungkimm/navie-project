@@ -12,12 +12,12 @@ import random
 # Create your views here.
 @require_safe
 def index(request):
-    recent_movies = Movie.objects.all().order_by('-release_date')
-    action_movies = Movie.objects.filter(genres=1).order_by('-release_date')
-    romance_movies = Movie.objects.filter(genres=14).order_by('-release_date')
-    crime_movies = Movie.objects.filter(genres=80).order_by('-release_date')
-    horror_movies = Movie.objects.filter(genres=27).order_by('-release_date')
-    comedy_movies = Movie.objects.filter(genres=35).order_by('-release_date')
+    recent_movies = Movie.objects.all().order_by('-release_date')[:15]
+    action_movies = Movie.objects.filter(genres=1).order_by('-release_date')[:15]
+    romance_movies = Movie.objects.filter(genres=14).order_by('-release_date')[:15]
+    crime_movies = Movie.objects.filter(genres=80).order_by('-release_date')[:15]
+    horror_movies = Movie.objects.filter(genres=27).order_by('-release_date')[:15]
+    comedy_movies = Movie.objects.filter(genres=35).order_by('-release_date')[:15]
     context = {
         'recent_movies': recent_movies,
         'action_movies': action_movies,
@@ -101,6 +101,7 @@ def likes(request, movie_pk):
 
 
 @login_required
+@require_safe
 def recommend_movies(request):
     return render(request, 'movies/recommend_movies.html')
 
@@ -178,5 +179,43 @@ def movies_worldcup(request):
     return JsonResponse(context, safe=False)
 
 
+@login_required
+@require_safe
 def result_recommend(request, movie1_pk, movie2_pk):
-    return render(request, 'movies/result_recommend.html')
+    movie1 = get_object_or_404(Movie, pk=movie1_pk)
+    movie2 = get_object_or_404(Movie, pk=movie2_pk)
+
+    genres1 = movie1.genres.all()
+    genres2 = movie2.genres.all()
+
+    for g1 in genres1:
+        for g2 in genres2:
+            if g1.pk != g2.pk:
+                genre1 = g1
+                genre2 = g2
+    
+    genre1_movie1 = random.choice(genre1.movies.all())
+    while True:
+        genre1_movie2 = random.choice(genre1.movies.all())
+        if genre1_movie1.pk != genre1_movie2.pk:
+            break
+    
+    genre2_movie3 = random.choice(genre2.movies.all())
+    while True:
+        genre2_movie4 = random.choice(genre2.movies.all())
+        if genre2_movie3.pk != genre2_movie4.pk:
+            break
+
+    request.user.recommend_movies.add(genre1_movie1)
+    request.user.recommend_movies.add(genre1_movie2)
+    request.user.recommend_movies.add(genre2_movie3)
+    request.user.recommend_movies.add(genre2_movie4)
+    context = {
+        'movie1': movie1,
+        'movie2': movie2,
+        'genre1_movie1': genre1_movie1,
+        'genre1_movie2': genre1_movie2,
+        'genre2_movie3': genre2_movie3,
+        'genre2_movie4': genre2_movie4,
+    }
+    return render(request, 'movies/result_recommend.html', context)

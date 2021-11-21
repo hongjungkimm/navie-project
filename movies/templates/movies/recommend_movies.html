@@ -2,6 +2,10 @@
 
 {% block content %}
   <button class="start-btn">시작하기</button>
+
+  {% comment %} 8강 4강 이렇게 글자가 바뀜 {% endcomment %}
+  <h2 class="tournament"></h2>
+
   <img id="first-movie" src="" width="200" height="310" alt="">
   <img id="second-movie" src="" width="200" height="310" alt="">
 {% endblock %}
@@ -12,6 +16,7 @@
     const requestUrl = '/movies/movies_worldcup/'
     const firstMovie = document.querySelector('#first-movie')
     const secondMovie = document.querySelector('#second-movie')
+    const tournament = document.querySelector('.tournament')
     let randomMovies = []
     // let firstMovieStatus = false
     // let secondMovieStatus = false
@@ -21,7 +26,9 @@
       randomMovies.push(randomMovies[0])
       randomMovies.shift()
       randomMovies.shift()
-      console.log(randomMovies)
+      if (randomMovies.length === 4) {
+        tournament.innerText = '4강'
+      }
       firstMovie.setAttribute("src", `https://image.tmdb.org/t/p/original${randomMovies[0][1]}`)
       secondMovie.setAttribute("src", `https://image.tmdb.org/t/p/original${randomMovies[1][1]}`)
       if (randomMovies.length == 2) {
@@ -41,6 +48,9 @@
       randomMovies.push(randomMovies[1])
       randomMovies.shift()
       randomMovies.shift()
+      if (randomMovies.length === 4) {
+        tournament.innerText = '4강'
+      }
       firstMovie.setAttribute("src", `https://image.tmdb.org/t/p/original${randomMovies[0][1]}`)
       secondMovie.setAttribute("src", `https://image.tmdb.org/t/p/original${randomMovies[1][1]}`)
       if (randomMovies.length == 2) {
@@ -61,6 +71,7 @@
           randomMovies = res.data.random_movies
           console.log(randomMovies)
           
+          tournament.innerText = '8강'
           firstMovie.setAttribute("src", `https://image.tmdb.org/t/p/original${randomMovies[0][1]}`)
           secondMovie.setAttribute("src", `https://image.tmdb.org/t/p/original${randomMovies[1][1]}`)
 
