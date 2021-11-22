@@ -13,19 +13,20 @@ import random
 @require_safe
 def index(request):
     recent_movies = Movie.objects.all().order_by('-release_date')[:15]
+    recent_poster = Movie.objects.all().order_by('-release_date')[:15]
     action_movies = Movie.objects.filter(genres=1).order_by('-release_date')[:15]
     romance_movies = Movie.objects.filter(genres=14).order_by('-release_date')[:15]
-    crime_movies = Movie.objects.filter(genres=80).order_by('-release_date')[:15]
-    horror_movies = Movie.objects.filter(genres=27).order_by('-release_date')[:15]
-    comedy_movies = Movie.objects.filter(genres=35).order_by('-release_date')[:15]
+    crime_movies = Movie.objects.filter(genres=5).order_by('-release_date')[:15]
+    horror_movies = Movie.objects.filter(genres=11).order_by('-release_date')[:15]
+    comedy_movies = Movie.objects.filter(genres=4).order_by('-release_date')[:15]
     context = {
         'recent_movies': recent_movies,
+        'recent_poster': recent_poster,
         'action_movies': action_movies,
         'romance_movies': romance_movies,
         'crime_movies': crime_movies,
         'horror_movies': horror_movies,
         'comedy_movies': comedy_movies,
-
     }
     return render(request, 'movies/index.html', context)
 
@@ -75,9 +76,22 @@ def detail_movie(request, movie_pk):
     except:
         pass
     
+    movie_reviews = movie.review_set.all()
+    movie_reviews_cnt = 0
+    movie_reviews_sum = 0
+    for review in movie_reviews:
+        movie_reviews_cnt += 1
+        movie_reviews_sum += review.rate
+    
+    if movie_reviews_cnt:
+        movie_avg_rate = round(movie_reviews_sum / movie_reviews_cnt)
+    else:
+        movie_avg_rate = 0
+
     context = {
         'movie': movie,
         'youtube_key': youtube_key,
+        'movie_avg_rate': movie_avg_rate,
     }
     return render(request, 'movies/detail_movie.html', context)
 
@@ -107,14 +121,14 @@ def recommend_movies(request):
 
 
 def movies_worldcup(request):
-    action = Movie.objects.filter(genres=1)
-    romance = Movie.objects.filter(genres=14)
-    crime = Movie.objects.filter(genres=5)
-    horror = Movie.objects.filter(genres=11)
-    comedy = Movie.objects.filter(genres=4)
-    sf = Movie.objects.filter(genres=15)
-    family = Movie.objects.filter(genres=8)
-    music = Movie.objects.filter(genres=12)
+    action = Movie.objects.filter(genres=1).order_by('-release_date')[:25]
+    romance = Movie.objects.filter(genres=14).order_by('-release_date')[:25]
+    crime = Movie.objects.filter(genres=5).order_by('-release_date')[:25]
+    horror = Movie.objects.filter(genres=11).order_by('-release_date')[:25]
+    comedy = Movie.objects.filter(genres=4).order_by('-release_date')[:25]
+    sf = Movie.objects.filter(genres=15).order_by('-release_date')[:25]
+    family = Movie.objects.filter(genres=8).order_by('-release_date')[:25]
+    music = Movie.objects.filter(genres=12).order_by('-release_date')[:25]
     
     # 8개 장르 영화 중복없이 넣기
     random_movies = []
