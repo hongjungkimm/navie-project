@@ -46,14 +46,10 @@
       {% else %}
         <div></div>
       {% endif %}
-
-      {% comment %} 삭제 버튼 {% endcomment %}
+            
       {% if request.user == review.user %}
         <div class="delete-btn">
-          <form action="{% url 'reviews:delete_review' review.pk %}" style="text-decoration: none;" method="POST">
-            {% csrf_token %}
-            <button class="inner-delete-btn">삭제</button>
-          </form>
+          <button data-review-pk={{review.pk}} data-bs-toggle="modal" data-bs-target="#delete-review" class="inner-delete-btn">삭제</button>
         </div>
       {% else %}
         <div></div>
@@ -92,4 +88,24 @@
 
   </div>
 
+  {% comment %} 삭제여부 확인 모달 {% endcomment %}
+  <div class="modal fade" id="delete-review" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 95%;"></button>
+        <div class="modal-body">
+          <h5>리뷰를 정말 삭제하시겠습니까?</h5>
+          <form class="review-delete-form" style="width: 20%; text-align: end;" action="{% url 'reviews:delete_review' review.pk %}" method="POST">
+            {% csrf_token %}
+            <br>
+            <button type="submit" class="btn btn-danger" style="border-radius: 25px; padding: 0px; width: 90%;">삭제</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
+{% block script %}
+<script src="/static/js/detail_review.js" defer></script>
+{% endblock script %}
