@@ -54,26 +54,30 @@ def search_info(request):
     
     if request.method == 'POST':
         search = request.POST
-        print(search)
-        print(search.get('name_id'))
-        print(search.get('email_id'))
         try:
-            u1 = get_object_or_404(get_user_model(), name=search.get('name_id'))
-            u2 = get_object_or_404(get_user_model(), email=search.get('email_id'))
+            print(search)
+            u1 = get_user_model().objects.get(name=search.get('name_id'))
+            print(u1)
+            u2 = get_user_model().objects.get(email=search.get('email_id'))
+            print(u2)
             users1 = get_user_model().objects.filter(name=search.get('name_id'))
             users2 = get_user_model().objects.filter(email=search.get('email_id'))
+            print(users1, '1')
+            print(users2, '2')
             for user1 in users1:
+                print(user1)
                 for user2 in users2:
+                    print(user2)
                     if user1.pk == user2.pk:
                         return redirect('accounts:searched_id', user1.pk)
             else:
                 return redirect('accounts:search_info')
         except:
-            print(search.get('username_password'))
-            print(search.get('name_password'))
             try:
                 users3 = get_user_model().objects.filter(username=search.get('username_password'))
                 users4 = get_user_model().objects.filter(name=search.get('name_password'))
+                print(users3, '3')
+                print(users4, '4')
                 for user3 in users3:
                     for user4 in users4:
                         if user3.pk == user4.pk:
@@ -99,6 +103,7 @@ def searched_id(request, user_pk):
         'user': user,
     }
     return render(request, 'accounts/searched_id.html', context)
+
 
 @require_safe
 def profile(request, user_username):
