@@ -14,7 +14,7 @@
 
    1-3. [주요 역할](#주요-역할)
 
-   1-4. [What is Navie?](#what-is-navie?)
+   1-4. [What is Navie?](#What-is-Navie?)
 
 
 
