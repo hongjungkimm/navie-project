@@ -15,8 +15,8 @@
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/kimhyeongjun95"><img src="https://avatars.githubusercontent.com/u/86656921?v=4" width="100px;" alt=""/><br /><sub><b>HYEONGJUN</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/hongjungkimm"><img src="https://avatars.githubusercontent.com/u/87457152?v=4" width="100px;" alt=""/><br /><sub><b>HONGJUNG</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/kimhyeongjun95"><img src="https://avatars.githubusercontent.com/u/86656921?v=4" width="200px;" alt=""/><br /><sub><b>HYEONGJUN</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/hongjungkimm"><img src="https://avatars.githubusercontent.com/u/87457152?v=4" width="200px;" alt=""/><br /><sub><b>HONGJUNG</b></sub></a><br /></td>
   </tr>
 </table>
 
