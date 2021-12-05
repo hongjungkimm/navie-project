@@ -20,17 +20,17 @@
 
 2.  [프로젝트 디자인](#프로젝트-디자인)
 
-   2-1.  [Tech Stack](#tech-stack)
+   2-1. [Tech Stack](#tech-stack)
 
-   2-2.  [UI Design](#ui-design)
+   2-2. [UI Design](#ui-design)
 
-   2-3.  [ERD Design](#erd-design)
+   2-3. [ERD Design](#erd-design)
 
 3.  [주요 기능](#주요-기능)
 
-   3-1.  [주요 기능 목록](#주요-기능-목록)
+   3-1. [주요 기능 목록](#주요-기능-목록)
 
-   3-2.  [시연 및 설명](#시연-및-설명)
+   3-2. [시연 및 설명](#시연-및-설명)
 
 <br>
 
