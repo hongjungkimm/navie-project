@@ -14,7 +14,7 @@
 
    1-3. [주요 역할](#주요-역할)
 
-   1-4. [What is Navie?](#What-is-Navie?)
+   1-4. [What is Navie?](#what-is-navie)
 
 
 
@@ -43,8 +43,8 @@
 
 ### 주요 역할
 
-- HONGJUNG: Back-End
-- HYEONGJUN: Front-End
+- **HONGJUNG**: Back-End
+- **HYEONGJUN**: Front-End
 
 ![캡처](README.assets/캡처-1638673830734.PNG)
 
@@ -52,7 +52,7 @@
 
 ### What is Navie?
 
-- 'Navigator' 와 'Movie' 를 합친 서비스명으로써 사용자의 인생영화를 찾아주겠다는 의미를 내포하고 있습니다.
+- **'Navie'** 는 **'Navigator**' 와 **'Movie'** 를 합친 서비스명으로써 사용자의 인생영화를 찾아주겠다는 의미를 내포하고 있습니다.
 
 ![캡처](README.assets/캡처-1638682938864.PNG)
 
